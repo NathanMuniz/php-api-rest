@@ -1,0 +1,21 @@
+<?php 
+header("Access-Control-Allow-Oring: *");
+header("Content-Type: appliation/json; charset=UTF-8");
+header("Access-Control-Allow-Methods: POST");
+header("Access-Contro-Max-Age: 3600");
+header("Acess-Control-Allow-Header: Content-Type, Access-Control-Allow-Headers,
+Authorization, X-Request-With");
+
+include_once("../db_connect.php");
+include_once  'plans.php';
+$database = new Database();
+$db = $database->getConnection();
+$item = new Plan($db);
+
+$item->_id = isset($_GET['_id']) ? $_GET['_id'] : die(0);
+
+if ($item->deletePlan()) {
+  echo json_encode("Plan deleted.");
+} else {
+  echo json_encode("Data could not be deleted");
+}

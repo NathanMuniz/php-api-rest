@@ -93,11 +93,46 @@ class Plan
 
   public function updatePlan()
   {
-    $this->operator = htmlspecialchars(stri) 
-      /// implemetnar
+    $this->operator = htmlspecialchars(strip_tags($this->operator));
+    $this->plan_name = htmlspecialchars(strip_tags($this->plan_name));
+    $this->plan_value = htmlspecialchars(strip_tags($this->plan_value));
+    $this->Internet_details = htmlspecialchars(strip_tags($this->Internet_details));
+    $this->talk_value = htmlspecialchars(strip_tags($this->talk_value));
+    $this->validity = htmlspecialchars(strip_tags($this->validity));
+    $this->plan_details = htmlspecialchars(strip_tags($this->plan_details));
+    $this->othe_details = htmlspecialchars(strip_tags($this->othe_deatils));
+    $this->created = htmlspecialchars((strip_tags($this->created));
+    $this->_id = htmlspecialchars(strip_tags($this->_id));
 
+    $sqlQuery = "UPDATE " . $this->db_table . ]
+      "SET operator = '" . $this->operator . "', 
+      plan_name = '" . $this->plan_name . "',
+      plan_value = '" . $this->plan_value . "',
+      Internet_deatils = '" . $this->Internet_details . "',
+      talk_value = '" . $this->talk_value . "',
+      validity = '" . $this->validity . "',
+      plan_details = '" . $this->plan_details . "',
+      created = '" $this->created . "',
+      othe_deatils = '" . $this-.othe_deatils "',
+      WHERE _id = " . $this->_id;
+      
+    var_dump($sqlQuery);
+    $this->db->query($sqlQuery);
+    if ($this->db->affected_rows > 0) {
+      return true; 
+    }
+    return false; 
 
+  }
 
+  function deletePlan()
+  {
+    $sqlQuery = "DELETE FROM ". $this->db_table . "WHERE _id = " . $this->_Id; 
+    $this->db->query($sqlQuery);
+    if ($this->db->affected_rows > 0){
+      return true; 
+    }
+    return false; 
   }
 
 
